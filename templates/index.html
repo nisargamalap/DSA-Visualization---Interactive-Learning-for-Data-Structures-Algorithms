@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA Visualizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Data Structures and Algorithms Visualizer</h1>
+    </header>
+    
+    <main>
+        <div class="container">
+            <div class="sidebar">
+                <h2>Data Structures</h2>
+                <ul class="data-structures">
+                    <li><button class="ds-btn active" data-ds="stack">Stack</button></li>
+                    <li><button class="ds-btn" data-ds="queue">Queue</button></li>
+                    <li><button class="ds-btn" data-ds="sorting">Sorting</button></li>
+                    <li><button class="ds-btn" data-ds="binary-search">Binary Search</button></li>
+                    <li><button class="ds-btn" data-ds="graph">Graph BFS</button></li>
+                    <!-- Add more data structures here -->
+                </ul>
+                
+                <div class="operations">
+                    <h2>Operations</h2>
+                    
+                    <!-- Stack Operations -->
+                    <div class="operation-panel" id="stack-operations">
+                        <div class="input-group">
+                            <input type="text" id="stack-value" placeholder="Enter a value">
+                            <button id="stack-push">Push</button>
+                        </div>
+                        <button id="stack-pop">Pop</button>
+                        <button id="stack-peek">Peek</button>
+                        <button id="stack-size">Size</button>
+                    </div>
+                    
+                    <!-- Queue Operations -->
+                    <div class="operation-panel" id="queue-operations" style="display: none;">
+                        <div class="input-group">
+                            <input type="text" id="queue-value" placeholder="Enter a value">
+                            <button id="queue-enqueue">Enqueue</button>
+                        </div>
+                        <button id="queue-dequeue">Dequeue</button>
+                        <button id="queue-peek">Peek</button>
+                        <button id="queue-size">Size</button>
+                    </div>
+                    <!-- Sorting Operations -->
+                    <div class="operation-panel" id="sorting-operations" style="display: none;">
+                    <div class="input-group">
+                        <input type="text" id="sorting-array" placeholder="Enter numbers separated by commas">
+                        <button id="generate-array">Generate</button>
+                    </div>
+                    <div class="speed-control">
+                        <label for="sort-speed">Animation Speed:</label>
+                        <input type="range" id="sort-speed" min="1" max="5" value="3">
+                    </div>
+                    <button id="start-sort">Start Bubble Sort</button>
+                    <button id="reset-sort">Reset</button>
+                </div>
+
+                <!-- Binary Search Operations -->
+                <div class="operation-panel" id="binary-search-operations" style="display: none;">
+                    <div class="input-group">
+                        <input type="text" id="search-array" placeholder="Enter sorted numbers separated by commas">
+                        <button id="generate-sorted-array">Generate</button>
+                    </div>
+                    <div class="input-group">
+                        <input type="number" id="search-target" placeholder="Enter target number">
+                        <button id="start-search">Search</button>
+                    </div>
+                    <button id="reset-search">Reset</button>
+                </div>
+
+                <!-- Graph Operations -->
+                <div class="operation-panel" id="graph-operations" style="display: none;">
+                    <div class="input-group">
+                        <select id="start-vertex">
+                            <option value="A">Vertex A</option>
+                            <option value="B">Vertex B</option>
+                            <option value="C">Vertex C</option>
+                            <option value="D">Vertex D</option>
+                            <option value="E">Vertex E</option>
+                        </select>
+                        <button id="start-bfs">Start BFS</button>
+                    </div>
+                    <button id="reset-graph">Reset</button>
+                </div>
+            </div>
+                
+                <div class="code-section">
+                    <h2>Implementation</h2>
+                    <pre id="code-display">
+class Stack:
+    def __init__(self):
+        self.items = []
+    
+    def push(self, item):
+        self.items.append(item)
+    
+    def pop(self):
+        if not self.is_empty():
+            return self.items.pop()
+    
+    def peek(self):
+        if not self.is_empty():
+            return self.items[-1]
+    
+    def is_empty(self):
+        return len(self.items) == 0
+    
+    def size(self):
+        return len(self.items)
+                    </pre>
+                </div>
+            </div>
+            
+            <div class="visualization">
+                <h2>Visualization</h2>
+                <div class="message" id="message">Select an operation to begin</div>
+                
+                <!-- Stack Visualization -->
+                <div class="visual-container" id="stack-visual">
+                    <div class="stack-container">
+                        <div class="stack-base">Stack Base</div>
+                        <div class="stack-items" id="stack-items"></div>
+                    </div>
+                </div>
+                
+                <!-- Queue Visualization -->
+                <div class="visual-container" id="queue-visual" style="display: none;">
+                    <div class="queue-container">
+                        <div class="queue-front">Front</div>
+                        <div class="queue-items" id="queue-items"></div>
+                        <div class="queue-rear">Rear</div>
+                    </div>
+                </div>
+                <!-- Sorting Visualization -->
+                <div class="visual-container" id="sorting-visual" style="display: none;">
+                    <div class="array-container" id="array-container"></div>
+                    <div class="controls">
+                        <div class="legend">
+                            <span class="comparing">Comparing</span>
+                            <span class="swapping">Swapping</span>
+                            <span class="sorted">Sorted</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Binary Search Visualization -->
+                <div class="visual-container" id="binary-search-visual" style="display: none;">
+                    <div class="array-container" id="search-container"></div>
+                    <div class="controls">
+                        <div class="legend">
+                            <span class="mid">Middle</span>
+                            <span class="range">Search Range</span>
+                            <span class="target">Target</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graph Visualization -->
+                <div class="visual-container" id="graph-visual" style="display: none;">
+                    <div class="graph-container" id="graph-container"></div>
+                    <div class="queue-display">
+                        <h3>BFS Queue:</h3>
+                        <div id="bfs-queue"></div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>DSA Visualizer</p>
+    </footer>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
+
