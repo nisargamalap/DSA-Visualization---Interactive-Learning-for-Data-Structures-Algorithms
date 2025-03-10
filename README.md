@@ -132,7 +132,7 @@ http://127.0.0.1:5000/
 ---
 
 💡 **Contribute:** Want to improve DSA Visualization? Fork the repo and submit a PR!\
-📧 **Contact:** Reach out for feedback or collaboration at [[your-email@example.com](mailto\:your-email@example.com)]\
+📧 **Contact:** Reach out for feedback or collaboration at [[your-email@example.com](mailto\:nisargamalap10@gmail.com)]\
 🔥 **Star the project on GitHub if you like it!** ⭐
 
 Happy Learning! 🎓🚀
